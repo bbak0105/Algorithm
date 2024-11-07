@@ -13,7 +13,8 @@ function selectionSort(arrays) {
     for(let i=0; i<arrays.length -1; i++) {
         indexMin = i // 변경 기준이 되는 인덱스
 
-        for(let j=indexMin + 1; j<arrays.length; j++) {
+        // for문에서는 인덱스만 설정하는 것이 Key Point
+        for(let j=indexMin + 1; j<arrays.length; j++) { 
             if(arrays[j].score < arrays[indexMin].score) {
                 indexMin = j
             }
