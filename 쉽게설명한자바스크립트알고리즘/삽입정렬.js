@@ -1,5 +1,6 @@
 // 삽입정렬 최선의 시간복잡도 O(n), 최악의 시간복잡도 O(n2)
 // 역순으로 조사하므로 0보다 큰지 확인할 것
+// 1. 오름차순
 let scores = [
   { name: "철수", score: 85 },
   { name: "영희", score: 92 },
@@ -10,7 +11,7 @@ let scores = [
 
 function insertSort(arrays) {
   // 인덱스 0은 이미 정렬되었다고 본다.
-  for (i = 1; i < arrays.length; i++) {
+  for (let i = 1; i < arrays.length; i++) {
     let currentValue = arrays[i];
     let j;
 
@@ -26,3 +27,22 @@ function insertSort(arrays) {
 }
 
 console.log(insertSort(scores));
+
+// 2. 내림차순
+function insertSortInvert(arrays) {
+  for (let i = 1; i < arrays.length; i++) {
+    let currentValue = arrays[i];
+    let j;
+
+    // 오름차순과 내림차순의 차이점은 여기 안에 있는 부등호
+    for (j = i - 1; j >= 0 && arrays[j].score < currentValue.score; j--) {
+      arrays[j + 1] = arrays[j];
+    }
+
+    arrays[j + 1] = currentValue;
+  }
+
+  return arrays;
+}
+
+console.log(insertSortInvert(scores));
