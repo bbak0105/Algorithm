@@ -41,6 +41,7 @@ console.log(answer);
 <br/>
 
 2. 입력 데이터가 텍스트 파일 형태로 주어지는 경우, <u>fs</u> 모듈을 사용하자.
+😈 공백 처리에 주의할 것
 
 <br/>
 
@@ -48,7 +49,8 @@ console.log(answer);
 // fs를 이용하여 파일 읽기
 
 let fs = require('fs');
-let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+let input = fs.readFileSync('/dev/stdin').toString().split('\n').filter(line => line.trim() !== '');  // 😈 공백 처리에 주의할 것
+// let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 // let input = fs.readFileSync('input.txt').toString().split('\n');
 
 console.log(input);
