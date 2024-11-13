@@ -14,9 +14,9 @@ function mergeSort(arr) {
 }
 
 function merge(left, right) {
-  let result = [];
-  let leftIdx = 0;
-  let rightIdx = 0;
+  let result = []; 
+  let leftIdx = 0; // const 상수로 선언하지 말 것!!!
+  let rightIdx = 0; // const 상수로 선언하지 말 것!!!
 
   while (leftIdx < left.length && rightIdx < right.length) {
     if (left[leftIdx] < right[rightIdx]) {
