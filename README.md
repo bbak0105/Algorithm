@@ -49,7 +49,7 @@ console.log(answer);
 // fs를 이용하여 파일 읽기
 
 let fs = require('fs');
-let input = fs.readFileSync('/dev/stdin').toString().split('\n').filter(line => line.trim() !== '');  // 😈 공백 처리에 주의할 것
+const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");  // 😈 공백 처리에 주의할 것
 // let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 // let input = fs.readFileSync('input.txt').toString().split('\n');
 
