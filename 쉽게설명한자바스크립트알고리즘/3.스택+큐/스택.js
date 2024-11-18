@@ -1,3 +1,6 @@
+/**
+* push, pop, peek : 모두 상수 시간 O(1)
+**/
 class Stack {
     constructor() {
         this.items = []
