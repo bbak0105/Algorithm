@@ -1,0 +1,39 @@
+class Queue {
+  constructor() {
+    this.storage = {}; // 데이터를 저장할 객체
+    this.head = 0; // 큐의 시작점
+    this.tail = 0; // 큐의 끝점
+  }
+
+  enqueue(value) {
+    this.storage[this.tail] = value; // 끝에 삽입
+    this.tail++;
+  }
+
+  dequeue() {
+    if (this.isEmpty()) return undefined;
+
+    const value = this.storage[this.head]; // 시작점의 값 가져오기
+    delete this.storage[this.head]; // 시작점의 값 삭제
+    this.head++;
+    return value;
+  }
+
+  peek() {
+    return this.isEmpty() ? undefined : this.storage[this.head];
+  }
+
+  isEmpty() {
+    return this.head === this.tail;
+  }
+
+  size() {
+    return this.tail - this.head;
+  }
+}
+
+const queue = new Queue();
+queue.enqueue(10);
+queue.enqueue(20);
+console.log("queue.dequeueu()", queue.dequeue()); // 10
+console.log("queue.peek()", queue.peek()); // 20
