@@ -1,3 +1,4 @@
+// shift가 시간 복잡도가 높으므로 이렇게 구현하는 것이 가장 알맞음
 class Queue {
   constructor() {
     this.storage = {}; // 데이터를 저장할 객체
