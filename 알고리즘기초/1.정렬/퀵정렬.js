@@ -5,6 +5,9 @@ function quickSort(arr) {
     return arr;
   }
 
+  // 최악을 피하기 
+  // const pivotIndex = Math.floor(Math.random() * arr.length);
+  // const pivot = arr[pivotIndex]
   const pivot = arr[0]; // 임의로 첫번째로 선택한다. 그리고 얘보다 작은애들을 왼쪽으로 넣는다.
   const left = [];
   const right = [];
