@@ -1,91 +1,88 @@
 class MinHeap {
   constructor() {
-    this.heap = [];
+    this.heap = []
   }
 
-  size() {
-    return this.heap.length;
+  getHeap() {
+    return this.heap
   }
 
   isEmpty() {
-    return this.heap.length === 0;
+    return this.heap.length === 0
   }
 
-  peek() {
-    return this.heap[0];
-  }
-
-  push(value) {
-    this.heap.push(value);
-    this.bubbleUp();
+  push(item) {
+    this.heap.push(item)
+    this._bubbleUp()
   }
 
   pop() {
-    if (this.heap.length === 0) return undefined;
+    if(this.isEmpty()) return -1
+    // 가장 밑에 있는게 빠지고 위에서부터 차곡차곡 _bubbleDown
+    const root = this.heap[0]
+    const last = this.heap.pop()
 
-    const min = this.heap[0];
-    const last = this.heap.pop();
-
-    if (this.heap.length > 0) {
-      this.heap[0] = last;
-      this.bubbleDown(0);
+    if(!this.isEmpty()) {
+      this.heap[0] = last
+      this._bubbleDown();
     }
 
-    return min;
+    return root
   }
 
-  bubbleUp() {
-    let index = this.heap.length - 1;
-    const value = this.heap[index];
+  _bubbleUp() { // 밑에 채우고 위에 부모를 비교하면서 올라간다.
+    let index = this.heap.length - 1
+    const value = this.heap[index] 
 
-    while (index > 0) {
-      const parentIndex = Math.floor((index - 1) / 2);
-      const parent = this.heap[parentIndex];
+    while(index > 0) {
+      const parentIndex = Math.floor((index-1)/2)
+      const parentValue = this.heap[parentIndex] // parent가 더 크면 바꾼다
 
-      if (parent <= value) break;
+      if(value >= parentValue) break; // 바꿀 필요 X
 
-      this.heap[index] = parent;
-      index = parentIndex;
+      this.heap[index] = parentValue
+      index = parentIndex 
     }
 
     this.heap[index] = value;
   }
 
-  bubbleDown(index = 0) {
-    const length = this.heap.length;
-    const value = this.heap[index];
+  _bubbleDown() { //위에 채우고 밑에 자식을 비교하면서 내려간다.
+    let index = 0
+    const value = this.heap[index]
+    const length = this.heap.length
 
-    while (true) {
+    while(true) {
       const left = index * 2 + 1;
       const right = index * 2 + 2;
       let smallest = index;
 
-      if (left < length && this.heap[left] < this.heap[smallest]) {
-        smallest = left;
-      }
-      if (right < length && this.heap[right] < this.heap[smallest]) {
-        smallest = right;
+      if(left < length && this.heap[left] < this.heap[smallest]) {
+        smallest = left
       }
 
-      if (smallest === index) break;
+      if(right < length && this.heap[right] < this.heap[smallest]) {
+        smallest = right
+      }
 
-      // swap
-      [this.heap[index], this.heap[smallest]] = [
-        this.heap[smallest],
-        this.heap[index],
-      ];
-      index = smallest;
+      if(smallest === index) break;
+
+      this.heap[index] = this.heap[smallest]
+      index = smallest
     }
+
+    this.heap[index] = value
   }
 }
 
-// 사용 예시
-const h = new MinHeap();
-h.push(5);
-h.push(2);
-h.push(8);
-h.push(1);
 
-while (!h.isEmpty()) {
-  console.log(h.pop()); // 1, 2, 5, 8
-}
+const mh = new MinHeap();
+
+mh.push(5)
+mh.push(3)
+mh.push(8)
+mh.push(1)
+console.log(mh.pop()) // 1
+console.log(mh.pop()) // 3
+console.log(mh.pop()) // 5
+console.log(mh.pop()) // 8
